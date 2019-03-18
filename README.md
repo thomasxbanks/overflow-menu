@@ -1,0 +1,17 @@
+- Is the screen wider or narrower than before?
+  - Narrower
+    - Is the total width of the items greater than the width of the nav?
+      - Yes
+        - move the last item to over flow
+      - No
+        - Do nothing
+  - Wider
+    - Is the nav width greater than the total width of the items?
+      - Yes
+        - Is the nav width greater than total items width plus one?
+          - Yes
+            - move item from overflow
+          - No
+            - Do nothing
+      - No
+        - Do nothing

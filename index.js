@@ -1,12 +1,12 @@
 // Variables
 const footer = document.querySelector('footer')
-const orangeBar = document.querySelector('nav')
-const purpleBar = document.querySelector('nav .desktop')
-const blueBar = document.querySelector('nav .overflow')
+const navbar = document.querySelector('nav')
+const primarybar = document.querySelector('nav .overflow-menu-primary')
+const overflowbar = document.querySelector('nav .overflow-menu-overflow')
 const toggleButton = document.querySelector('[data-action="overflow-toggle"]')
-let navItems = Array.prototype.slice.call(document.querySelectorAll('li'))
-let overflowItems = Array.prototype.slice.call(blueBar.querySelectorAll('li'))
-let browserWidth, startingBrowserWidth, orangeBarWidth, purpleBarWidth, navItemWidths
+let navItems = Array.prototype.slice.call(navbar.querySelectorAll('li'))
+let overflowItems = Array.prototype.slice.call(overflowbar.querySelectorAll('li'))
+let browserWidth, startingBrowserWidth, navbarWidth, primarybarWidth, navItemWidths
 
 // Functions
 
@@ -25,37 +25,37 @@ const elementWidth = (element) => {
 }
 
 const sortMenus = () => {
-  let orangeBarContents = []
-  let blueBarContents = []
-  let count = Math.floor((elementWidth(orangeBar) - elementWidth(toggleButton.parentElement)) / elementWidth(navItems[0]))
+  let navbarContents = []
+  let overflowbarContents = []
+  let count = (Math.floor((elementWidth(navbar) - elementWidth(toggleButton.parentElement)) / elementWidth(navItems[0])) - 1)
   if (count < 0) {
     count = 0
   }
   if (count > navItems.length) {
     count = navItems.length
   }
-  console.log(`Can fit ${count} items in orangeBar`)
+  console.log(`Can fit ${count} items in navbar`)
   for (let i = 0; i < count; i++) {
-    orangeBarContents.push(navItems[i])
+    navbarContents.push(navItems[i])
   }
 
   for (let i = count; i < navItems.length; i++) {
-    blueBarContents.push(navItems[i])
+    overflowbarContents.push(navItems[i])
   }
-  console.log('primaryMenuContents', orangeBarContents)
-  console.log('overflowMenuContents', blueBarContents)
-  if (blueBarContents.length > 0) {
+  console.log('primaryMenuContents', navbarContents)
+  console.log('overflowMenuContents', overflowbarContents)
+  if (overflowbarContents.length > 0) {
     toggleButton.style.display = 'inline-flex'
   } else {
     toggleButton.style.display = 'none'
   }
-  purpleBar.innerHTML = ''
-  blueBar.innerHTML = ''
-  orangeBarContents.reverse().map((purpleBarItem) => {
-    purpleBar.insertAdjacentElement('afterbegin', purpleBarItem)
+  primarybar.innerHTML = ''
+  overflowbar.innerHTML = ''
+  navbarContents.reverse().map((primarybarItem) => {
+    primarybar.insertAdjacentElement('afterbegin', primarybarItem)
   })
-  blueBarContents.reverse().map((blueBarItem) => {
-    blueBar.insertAdjacentElement('afterbegin', blueBarItem)
+  overflowbarContents.reverse().map((overflowbarItem) => {
+    overflowbar.insertAdjacentElement('afterbegin', overflowbarItem)
   })
 }
 
@@ -69,5 +69,5 @@ window.addEventListener('resize', sortMenus)
 toggleButton.addEventListener('click', (e) => {
   e.preventDefault();
   e.currentTarget.dataset.active = !toBoolean(e.currentTarget.dataset.active)
-  blueBar.dataset.active = !toBoolean(blueBar.dataset.active)
+  overflowbar.dataset.active = !toBoolean(overflowbar.dataset.active)
 })

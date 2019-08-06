@@ -1,0 +1,63 @@
+
+
+.overflow-menu_container {
+  display: block;
+  position: sticky;
+  top: 0;
+  font-size: 0;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.overflow-menu_container .overflow-menu-primary {
+  font-size: 0;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  vertical-align: top;
+  max-width: calc(100% - 3rem);
+}
+
+.overflow-menu_container .overflow-menu-overflow {
+  position: fixed;
+  top: 3rem;
+  right: 0;
+  height: auto;
+  max-height: 100vh;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform ease 300ms;
+}
+
+.overflow-menu_container .overflow-menu-overflow[data-active="true"] {
+  transform: none;
+}
+
+.overflow-menu_container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.overflow-menu_container ul li {
+  font-size: 1rem;
+}
+
+.overflow-menu_container .overflow-menu-primary li {
+  display: inline-block;
+  width: auto;
+}
+
+.overflow-menu_container ul li a {
+  display: block;
+  font-size: 1rem;
+  padding: 1rem;
+  line-height: 1rem;
+}
+
+.toggle-button_container {
+  display: block;
+  float: right;
+  width: 3rem;
+}
